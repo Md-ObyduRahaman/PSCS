@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PSCS</title>
+<!-- using online links -->
+<link rel="stylesheet"
+	href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+<!-- CSS For Bootstrap  -->
+<link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.css">
+<!-- font awesome -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<!-- CSS for DataTable -->
+<link rel="stylesheet" href="../../../../datatable/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../datatable/bootstrap5.min.css">
+<link rel="stylesheet" href="../../../../css/main.css">
+<link rel="stylesheet" href="../../../../css/sidebar-themes.css">
+<link rel="stylesheet" href="../../../../css/form-style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#toggle-sidebar").click(function() {
+			$(".togg").toggle("slow");
+		});
+	});
+</script>
+<style>
+ul li a {
+	color: white !important;
+}
+
+.logo {
+	width: 160px;
+	height: 85px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.logo {
+		width: 30px;
+		height: 20px;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.logo {
+		width: 115px;
+		height: 70px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.logo {
+		width: 130px;
+		height: 75px;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.logo {
+		width: 145px;
+		height: 80px;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.logo {
+		width: 160px;
+		height: 85px;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row flex-nowrap">
+
+			<div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark togg">
+				<div th:replace="fragment/sideBar :: sideBar"></div>
+			</div>
+
+
+			<!-- page-content  -->
+			<main class="page-content">
+				<div id="overlay" class="overlay"></div>
+				<div class="container-fluid" style="padding: 0px;">
+					<div class="title-bar"
+						style="height: 90px; background-color: #CDB699 !important; width: 100% !important; background-repeat: no-repeat; background-size: initial;">
+						<a id="toggle-sidebar" class="btn btn-secondary rounded-0"
+							href="#" style="margin: 20px; background: #3ab54a;"> <span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+										d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+						</span>
+
+						</a>
+
+
+					</div>
+
+					<div class="container mt-5 ">
+
+						<div class="card-container-holder">
+							<div class="card-5">
+								<div class="card-header"
+									style="background: #2b9139; color: aliceblue">
+									<h2 class="text-center">Payment</h2>
+								</div>
+								<div class="card-shadow shadow-lg p-3 mb-5 bg-white rounded">
+									<div class="form-body ">
+										<form
+											th:action="@{'/Payment/'+${SHOP_ID}+'/'+${HEAD_ID}+'/'+${SHOP_BR_ID}}"
+											method="post" th:object="${payment}">
+
+											
+											<div class="row m-3">
+												
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center">Maintenance Amount:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control" name="MNT_AMT"
+																id="MNT_AMT" th:value="${MNT_AMT}">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="Date" class="text-center">Initial
+																Payment Date:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="date" class="form-control" name="INI_DATE"
+																id="INI_DATE" th:text="*{INI_DATE}">
+														</div>
+													</div>
+												</div>
+												
+											</div>
+											<div class="row m-3">
+												
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+															<label for="text" class="text-center">No. of Days
+																to Reminder:</label>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<input type="text" class="form-control" name="DAY_GAP"
+																id="DAY_GAP" th:value="${DAY_GAP}">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center">Last
+																Payment Date:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="Date" class="form-control" name="LAST_PAY"
+																id="LAST_PAY" th:value="${LAST_PAY}">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row m-3">
+												
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center">Next
+																Payment Date:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="Date" class="form-control" name="NEXT_PAY"
+																id="NEXT_PAY" th:value="${NEXT_PAY}">
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center">Installment
+																Amount:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control" name="INT_AMT"
+																id="INT_AMT" th:value="${INT_AMT}">
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row m-3">
+												
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center">Paid Month:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<!-- <input type="text" class="form-control" name="PAY_MON"
+																id="PAY_MON" th:value="${PAY_MON}"> -->
+																
+																<select type="text" name="PAY_MON" id="PAY_MON"
+																class="form-control">
+																<option value="">Select Month</option>
+																<option th:each="a : ${listMonth}"
+																	th:value="${a.MONTH_CODE}" th:text="${a.MONTH_NAME}"
+																	th:selected=${a.MONTH_NAME}==${payment.PAY_MON}></option> <!-- th:selected=${a.SUB_HEAD_ID}==${shop_item.HEAD_ID} -->
+															</select> 
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center" hidden='hidden'>Shop ID:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control" name="SHOP_ID"
+																id="SHOP_ID" th:value="${SHOP_ID}" hidden='hidden'>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row m-3">
+												
+
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center" hidden='hidden'>Head ID:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control" name="HEAD_ID"
+																id="HEAD_ID" th:value="${HEAD_ID}" hidden='hidden'>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-5 col-md-5 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12 mt-3">
+															<label for="text" class="text-center" hidden='hidden'>Shop Branch
+																ID:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control" name="SHOP_BR_ID"
+																id="SHOP_BR_ID" th:value="${SHOP_BR_ID}" hidden='hidden'>
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12"></div>
+												<div class="col-lg-4 col-md-4 col-sm-12"></div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<button type="button" class="btn btn-success m-3"
+														data-toggle="modal" data-target="#myModal"
+														th:if="${flag} == '0' ">Save</button>
+												</div>
+											</div>
+
+											<div class="row">
+
+												<div class="col-lg-3 col-md-3 col-sm-12">
+													<button type="button" class="btn btn-info m-3"
+														data-toggle="modal" data-target="#myModal1"
+														th:if="${flag} == '1' ">Update</button>
+
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-12">
+													<button type="button" class="btn btn-danger m-3"
+														data-toggle="modal" data-target="#myModal2"
+														th:if="${flag} == '1' ">Delete</button>
+												</div>
+
+											</div>
+
+
+
+
+
+											<div class="row form-inline" style="margin-left: 450px;">
+
+
+
+												<!-- Modal HTML -->
+												<div id="myModal" class="modal fade ">
+													<div class="modal-dialog modal-confirm">
+														<div class="modal-content">
+															<div class="modal-header flex-column">
+																<h4 class="modal-title w-100">Are you sure?</h4>
+																<a type="button" class="btn-close" data-dismiss="modal"
+																	aria-hidden="true">&times;</a>
+															</div>
+															<div class="modal-body">
+																<p>Do you really want to save these records?</p>
+															</div>
+															<div class="modal-footer justify-content-center"
+																style="border: none;">
+																<a type="button" class="btn btn-secondary"
+																	data-dismiss="modal">Cancel</a> <input
+																	class="btn btn-danger" name="submit" id="submit"
+																	type="submit" value="Yes">
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- Modal HTML -->
+												<div id="myModal1" class="modal fade ">
+													<div class="modal-dialog modal-confirm">
+														<div class="modal-content">
+															<div class="modal-header flex-column">
+																<h4 class="modal-title w-100">Are you sure?</h4>
+																<a type="button" class="btn-close" data-dismiss="modal"
+																	aria-hidden="true">&times;</a>
+															</div>
+															<div class="modal-body">
+																<p>Do you really want to update these records?</p>
+															</div>
+															<div class="modal-footer justify-content-center"
+																style="border: none;">
+																<a type="button" class="btn btn-secondary"
+																	data-dismiss="modal">Cancel</a> <input
+																	class="btn btn-danger" name="edit" id="edit"
+																	type="submit"
+																	th:formaction="@{'/Payment_edit/'+${SHOP_ID} +'/'+ ${HEAD_ID} +'/'+ ${SHOP_BR_ID} +'/'+ ${PAYED_ID} }"
+																	value="Yes">
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!--     Modal HTML Ends -->
+
+												<!-- Modal HTML -->
+												<div id="myModal2" class="modal fade ">
+													<div class="modal-dialog modal-confirm">
+														<div class="modal-content">
+															<div class="modal-header flex-column">
+																<h4 class="modal-title w-100">Are you sure?</h4>
+																<a type="button" class="btn-close" data-dismiss="modal"
+																	aria-hidden="true">&times;</a>
+															</div>
+															<div class="modal-body">
+																<p>Do you really want to delete these records?</p>
+															</div>
+															<div class="modal-footer justify-content-center"
+																style="border: none;">
+																<a type="button" class="btn btn-secondary"
+																	data-dismiss="modal">Cancel</a>
+																<!--                     <button type="button" class="btn btn-danger">Delete</button> -->
+																<input class="btn btn-danger" name="delete" id="delete"
+																	type="submit"
+																	th:formaction="@{'/Payment_delete/'+${SHOP_ID} +'/'+ ${HEAD_ID}+'/'+ ${SHOP_BR_ID} +'/'+ ${PAYED_ID}  }"
+																	value="Yes">
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<!--     Modal HTML Ends -->
+
+												<!--     Modal HTML Ends -->
+
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-5 pt-3">
+
+							<div class="col-lg-12 col-md-12 col-sm-12 ml-5">
+								<div class="card">
+									<div class="card-header"
+										style="background: #2b9139; color: aliceblue">
+										<h2 class="text-heading" style="text-align: center;">
+											Payment List</h2>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table id="example" class="display" style="font-size: 14px;">
+												<thead>
+													<tr>
+
+														<th>Maintenance Amount</th>
+														<th>Initial Payment Date</th>
+														<th>No. of Days to Reminder</th>
+														<th>Last Payment Date</th>
+														<th>Next Payment Date</th>
+														<th>Installment Amount</th>
+														<th>Paid Month</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr th:each="s: ${listPayment}">
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.MNT_AMT}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.INI_DATE}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.DAY_GAP}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.LAST_PAY}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.NEXT_PAY}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.INT_AMT}"></a></td>
+														<td style="width: 10%"><a
+															th:href="'/Payment/' +${s.SHOP_ID}+'/'+${s.HEAD_ID}+'/'+ ${s.SHOP_BR_ID}+'/'+ ${s.PAYED_ID} "
+															class="row m-0 p-0" th:text="${s.PAY_MON}"></a></td>
+
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- page-content" -->
+
+		</div>
+	</div>
+
+	<!-- using online scripts -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<!-- using local scripts -->
+	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+
+	<script src="../js/main.js"></script>
+	<!-- datatable script  -->
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<!-- Call JS For DataTable -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
+	</script>
+</body>
+</html>

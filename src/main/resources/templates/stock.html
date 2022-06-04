@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSCS</title>
+    <!-- using online links -->
+    <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- CSS For Bootstrap  -->
+    <link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- CSS for DataTable -->
+    <link rel="stylesheet" href="../../../../datatable/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../datatable/bootstrap5.min.css">
+    <link rel="stylesheet" href="../../../../css/main.css">
+    <link rel="stylesheet" href="../../../../css/sidebar-themes.css">
+    <link rel="stylesheet" href="../../../../css/form-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  $("#toggle-sidebar").click(function(){
+	    $(".togg").toggle("slow");
+	  });
+	});
+	</script>
+    <style>
+    	
+    	ul li a
+    	{
+    		color: white !important;
+    	}
+    	
+      .logo {
+        width: 160px;
+        height: 85px;
+      }
+
+      /* Extra small devices (phones, 600px and down) */
+      @media only screen and (max-width: 600px) {
+        .logo {
+          width: 30px;
+          height: 20px;
+        }
+      }
+
+      /* Small devices (portrait tablets and large phones, 600px and up) */
+      @media only screen and (min-width: 600px) {
+        .logo {
+          width: 115px;
+          height: 70px;
+        }
+      }
+
+      /* Medium devices (landscape tablets, 768px and up) */
+      @media only screen and (min-width: 768px) {
+        .logo {
+          width: 130px;
+          height: 75px;
+        }
+      }
+
+      /* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+        .logo {
+          width: 145px;
+          height: 80px;
+        }
+      }
+
+      /* Extra large devices (large laptops and desktops, 1200px and up) */
+      @media only screen and (min-width: 1200px) {
+        .logo {
+          width: 160px;
+          height: 85px;
+        }
+      }
+      
+           .miami,
+        .denver,
+        .paris {
+
+            display: none;
+        }
+
+        #flex {
+            display: flex;
+        }
+        
+        th,td{
+	
+	font-size:20px
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+       
+            <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark togg" >
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 ">
+            <!-- sidebar-brand  -->
+            <div class="sidebar-item sidebar-brand">
+              <a href="/" class="text-center ">
+                <img src="../../../../img/user.jpg" alt="" class="logo">
+                
+              </a>
+              
+                 <h4 class="text-center" style="color: white;">Product Selling Control System</h4> 
+            </div>
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+              <li class="nav-item">
+                <a href="#" class="nav-link align-middle px-0">
+                  <i class="fs-4 bi-house"></i>
+                  <span class="ms-1 d-none d-sm-inline" >Product</span>
+                </a>
+              </li>
+
+              <li>
+                <a th:href=@{/Shop} class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-table"></i>
+                  <span class="ms-1 d-none d-sm-inline">Shop</span>
+                </a>
+              </li>
+              <li>
+                <a th:href=@{/Location} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">Stock</span>
+                </a>
+         
+              </li>
+              <li>
+                <a th:href=@{/User} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">User</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-people"></i>
+                  <span class="ms-1 d-none d-sm-inline">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+          <!-- page-content  -->
+          <main class="page-content">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid" style="padding: 0px;">
+              <div class="title-bar" style="height: 90px; background-color: #CDB699 !important;width: 100%!important;background-repeat: no-repeat;background-size: initial;">
+                <a id="toggle-sidebar" class="btn btn-secondary rounded-0" href="#" style="margin: 20px; background: #3ab54a;">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                  </span>
+                  
+                </a>
+                
+               
+              </div>
+              
+                  <div class="container mt-5 ">
+                  
+                  
+
+ <main>
+        <section id="flex">
+            <div style="margin-right: 30px;">
+                <h5>Head </h5>
+            </div>
+          
+            <div style="margin-right: 30px ;">
+                <select class="form-control">
+                    <option value="select">Select Head</option>
+                    <option value="miami">Bangladesh</option>
+                    <option value="denver">India</option>
+                    <option value="paris">Pakistan</option>
+                </select>
+            </div>
+          
+        </section>
+     
+
+        <div class="miami">
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Dhaka</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Dhaka</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Dhaka</td>
+                    </tr>
+                    <!-- <tr>
+                        <th scope="row">Address</th>
+                        <td>One way Streen Miami /USA</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">E-mail</th>
+                        <td>e-mail@mail.com</td>
+                    </tr> -->
+                </tbody>
+            </table>
+
+            <!-- <div class="miamimaps">GOGOLEMAPSCODE</div> -->
+
+        </div>
+
+        <div class="denver">
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Delhi</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Delhi</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Delhi</td>
+                    </tr>
+                    <!-- <tr>
+                        <th scope="row">Address</th>
+                        <td>One way Streen Denver /USA</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">E-mail</th>
+                        <td>e-mail@mail.com</td>
+                    </tr> -->
+                </tbody>
+            </table>
+
+            <!-- <div class="denvermaps">GOGOLEMAPSCODE</div> -->
+
+        </div>
+
+        <div class="paris">
+            <table>
+                <tbody>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Islamabad</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Islamabad</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">City</th>
+                        <td>Islamabad</td>
+                    </tr>
+                    <!-- <tr>
+                        <th scope="row">Address</th>
+                        <td>One way Streen Paris /FR</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">E-mail</th>
+                        <td>e-mail@mail.com</td>
+                    </tr> -->
+                </tbody>
+            </table>
+ </div>
+ 
+ <form method="POST" id="formulario">
+    <div >
+      <input style="width: 150px;"  type="text" name="myInputs[]"> 
+      <input type="button" value="ADD" onClick="addInput();">
+    </div>
+  </form>
+
+    </main>
+                </div>
+            </div>
+        </div>
+
+  
+    </div>
+  
+            </div>
+          </main>
+          <!-- page-content" -->
+      
+      </div>
+    </div>
+    <script>
+    
+    document.querySelector('.form-control').addEventListener('change',function(event) {
+    const selectedOption = event.target.value
+    
+    Array.from(document.querySelectorAll('.miami, .denver, .paris')).forEach(elem => {
+      if (elem.className !== selectedOption) {
+        elem.style.display = 'none';
+      } else {
+        elem.style.display = 'block';
+      }
+    });
+  });
+
+  function addInput(){
+    var newdiv = document.createElement('div');
+    //newdiv.id = dynamicInput[counter];
+    newdiv.innerHTML = "<input type='text' name='myInputs[]'> <input  type='button' value='REMOVE' onClick='removeInput(this);'>";
+    document.getElementById('formulario').appendChild(newdiv);
+  }
+
+  function removeInput(btn){
+      btn.parentNode.remove();
+  }
+    
+    
+    </script>
+	<!-- using online scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+		</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+		</script>
+	<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<!-- using local scripts -->
+	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+
+	<script src="../js/main.js"></script>
+	<!-- datatable script  -->
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- Call JS For DataTable -->
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+  </body>
+</html>

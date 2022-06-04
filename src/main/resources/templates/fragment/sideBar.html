@@ -1,0 +1,61 @@
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 " th:fragment="sideBar">
+            <!-- sidebar-brand  -->
+            <div class="sidebar-item sidebar-brand">
+              <a href="/" class="text-center ">
+                <img src="../../../../img/iShop.jpeg" alt="" class="logo">
+                
+              </a>
+              
+                 <h4 class="text-center" style="color: white;">Product Selling Control System</h4> 
+            </div>
+            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+              <li class="nav-item">
+                <a th:href=@{/Level1} class="nav-link align-middle px-0">
+                  <i class="fs-4 bi-house"></i>
+                  <span class="ms-1 d-none d-sm-inline" >Product</span>
+                </a>
+              </li>
+
+              <li>
+                <a th:href=@{/Shop} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">Shop</span>
+                </a>
+         
+              </li>
+               <li>
+                <a th:href=@{/Stock} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">Stock</span>
+                </a>
+         
+              </li>
+              
+              <li>
+                <a th:href=@{/Account_Statement} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">Account Statement</span>
+                </a>
+         
+              </li>
+              <li>
+                <a th:href=@{/UnAuth_Payment} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-bootstrap"></i>
+                  <span class="ms-1 d-none d-sm-inline">unauthorized Payment</span>
+                </a>
+         
+              </li>
+              <li>
+                <a th:href=@{/User} data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-grid"></i>
+                  <span class="ms-1 d-none d-sm-inline">User</span>
+                </a>
+              </li>
+              <li>
+                <a th:href=@{/logout} class="nav-link px-0 align-middle">
+                  <i class="fs-4 bi-people"></i>
+                  <span class="ms-1 d-none d-sm-inline">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>

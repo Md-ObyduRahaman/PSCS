@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PSCS</title>
+<!-- using online links -->
+<link rel="stylesheet"
+	href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+<!-- CSS For Bootstrap  -->
+<link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.css">
+<!-- font awesome -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<!-- CSS for DataTable -->
+<link rel="stylesheet" href="../../../../datatable/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../datatable/bootstrap5.min.css">
+<link rel="stylesheet" href="../../../../css/main.css">
+<link rel="stylesheet" href="../../../../css/sidebar-themes.css">
+<link rel="stylesheet" href="../../../../css/form-style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#toggle-sidebar").click(function() {
+			$(".togg").toggle("slow");
+		});
+	});
+</script>
+<style>
+ul li a {
+	color: white !important;
+}
+
+.logo {
+	width: 160px;
+	height: 85px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.logo {
+		width: 30px;
+		height: 20px;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.logo {
+		width: 115px;
+		height: 70px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.logo {
+		width: 130px;
+		height: 75px;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.logo {
+		width: 145px;
+		height: 80px;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.logo {
+		width: 160px;
+		height: 85px;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row flex-nowrap">
+
+			<div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark togg">
+				<div th:replace="fragment/sideBar :: sideBar"></div>
+			</div>
+
+
+			<!-- page-content  -->
+			<main class="page-content">
+				<div id="overlay" class="overlay"></div>
+				<div class="container-fluid" style="padding: 0px;">
+					<div class="title-bar"
+						style="height: 90px; background-color: #CDB699 !important; width: 100% !important; background-repeat: no-repeat; background-size: initial;">
+						<a id="toggle-sidebar" class="btn btn-secondary rounded-0"
+							href="#" style="margin: 20px; background: #3ab54a;"> <span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+										d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+						</span>
+
+						</a>
+
+
+					</div>
+
+					<div class="container mt-5 ">
+
+						<div class="card-container-holder">
+							<div class="card-5">
+								<div class="card-header"
+									style="background: #2b9139; color: aliceblue">
+									<h2 class="text-center">Shop Contact List</h2>
+								</div>
+								<div class="card-shadow shadow-lg p-3 mb-5 bg-white rounded">
+									<div class="form-body ">
+										<form class="form-inline" th:action="@{/SHOP_CONTACT_LIST}"
+											method="post" th:object="${shop_Contact}" style="display: block;">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<label for="Date" class="text-center m-2">Head:</label>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<select id="HEAD_ID" class="form-control" name="HEAD_ID"
+																required>
+																<option value="">Select Head</option>
+																<option th:each="a : ${listHead}"
+																	th:value="${a.HEAD_ID}" th:text="${a.HEAD_NAME}"></option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="row">
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<label for="Date" class="text-center m-2">Shop
+																Branch:</label>
+														</div>
+														<div class="col-lg-6 col-md-6 col-sm-12">
+															<select id="SHOP_BR_ID" class="form-control"
+																name="SHOP_BR_ID" required>
+																<option value="">Select Shop Branch</option>
+																<option th:each="a : ${Shop_Br_dropdown}"
+																	th:value="${a.SHOP_BR_ID}" th:text="${a.SHOP_BR_NAME}"></option>
+															</select>
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12"></div>
+												<div class="col-lg-4 col-md-4 col-sm-12 text-center">
+													<input type="submit" value="Load"
+														class="btn btn-lg btn-success mr-1 mb-1" /> <input
+														type='button' id='btn' value='Print'
+														class="btn btn-lg btn-primary mr-1 mb-1 "
+														onclick="printContent('divName')">
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12 text-center">
+
+												</div>
+											</div>
+
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row mt-5 pt-3">
+
+							<div class="col-lg-12 col-md-12 col-sm-12 ml-5">
+								<div class="card">
+									<div class="card-header"
+										style="background: #2b9139; color: aliceblue">
+										<h2 class="text-heading" style="text-align: center;">
+											Shop Contact List</h2>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table display table-bordered margin-top:10px"
+												id="">
+												<thead class="text" style="font-size: 14px; color: black;">
+													<tr style="background: #11c7e0">
+														<th>Head Name</th>
+														<th>Shop Branch Name</th>
+														<th>Contact Name</th>
+														<th>Contact Phone Number 1</th>
+														<th>Contact Phone Number 2</th>
+														<th>Contact Email</th>
+														<th>Contact NID</th>
+														<th>Contact TIN No.</th>
+														<th>Contact Address 1</th>
+														<th>Contact Address 2</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="s: ${listShop_Contact}">
+														<td  scope="row" th:text="${s.HEAD_NAME}"></td>
+														<td  scope="row" th:text="${s.SHOP_BR_NAME}"></td>
+														<td scope="row" th:text="${s.CON_NAME}"></td>
+														<td scope="row" th:text="${s.CON_PHN1}"></td>
+														<td scope="row" th:text="${s.CON_PHN2}"></td>
+														<td scope="row" th:text="${s.CON_EMAIL}"></td>
+														<td scope="row" th:text="${s.CON_NID}"></td>
+														<td scope="row" th:text="${s.CON_TIN}"></td>
+														<td scope="row" th:text="${s.CON_ADDR1}"></td>
+														<td scope="row" th:text="${s.CON_ADDR2}"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</main>
+			<!-- page-content" -->
+
+		</div>
+	</div>
+
+	<!-- using online scripts -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<!-- using local scripts -->
+	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+
+	<script src="../js/main.js"></script>
+	<!-- datatable script  -->
+	<script
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<!-- Call JS For DataTable -->
+	<script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		});
+	</script>
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$("#HEAD_ID")
+									.change(
+											function() {
+
+												$("#SHOP_BR_ID").empty();
+
+												var x = $("#HEAD_ID").val();
+
+												if (x == "") {
+													$("#SHOP_BR_ID").empty();
+													$("<option>")
+															.val("")
+															.text(
+																	"Select Branch")
+															.appendTo(
+																	BranchDropdown);
+												} else {
+
+													var urlString = "/api/Shop_branch/"
+															+ x;
+													console.log(urlString);
+
+													$
+															.ajax({
+																method : "GET",
+																url : urlString
+															})
+															.done(
+																	function(
+																			responseJson) {
+																		console
+																				.log(responseJson);
+																		BranchDropdown = $("#SHOP_BR_ID");
+
+																		$(
+																				"<option>")
+																				.val(
+																						"")
+																				.text(
+																						"Select Branch")
+																				.appendTo(
+																						BranchDropdown);
+																		$
+																				.each(
+																						responseJson,
+																						function(
+																								index,
+																								SHOP_BR_ID) {
+
+																							$(
+																									"<option>")
+																									.val(
+																											SHOP_BR_ID.shop_BR_ID)
+																									.text(
+																											SHOP_BR_ID.shop_BR_NAME)
+																									.appendTo(
+																											BranchDropdown);
+																						});
+																	})
+															.fail(
+																	function() {
+																		alert("Connection Error");
+																	})
+												}
+
+											})
+						})
+	</script>
+
+</body>
+</html>

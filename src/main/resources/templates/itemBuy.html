@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PSCS</title>
+<!-- using online links -->
+<!-- <link rel="stylesheet"
+	href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css"> -->
+<!-- CSS For Bootstrap  -->
+<link rel="stylesheet" href="../../../../bootstrap/css/bootstrap.css">
+<!-- font awesome -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<!-- CSS for DataTable -->
+<!-- <link rel="stylesheet" href="../../../../datatable/bootstrap.min.css">
+<link rel="stylesheet" href="../../../../datatable/bootstrap5.min.css"> -->
+<!-- <link rel="stylesheet" href="../../../../css/main.css"> -->
+<!-- <link rel="stylesheet" href="../../../../css/sidebar-themes.css">
+<link rel="stylesheet" href="../../../../css/form-style.css"> -->
+
+
+<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+        
+
+<script>
+	$(document).ready(function() {
+		$("#toggle-sidebar").click(function() {
+			$(".togg").toggle("slow");
+		});
+	});
+</script>
+<style>
+ul li a {
+	color: white !important;
+}
+
+.logo {
+	width: 160px;
+	height: 85px;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.logo {
+		width: 30px;
+		height: 20px;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.logo {
+		width: 115px;
+		height: 70px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.logo {
+		width: 130px;
+		height: 75px;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.logo {
+		width: 145px;
+		height: 80px;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	.logo {
+		width: 160px;
+		height: 85px;
+	}
+}
+</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row flex-nowrap">
+
+			<div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark togg">
+				<div th:replace="fragment/sideBar :: sideBar"></div>
+			</div>
+			<!-- page-content  -->
+			<main class="page-content">
+				<div id="overlay" class="overlay"></div>
+				<div class="container-fluid" style="padding: 0px;">
+					<div class="title-bar"
+						style="height: 90px; background-color: #CDB699 !important; width: 100% !important; background-repeat: no-repeat; background-size: initial;">
+						<a id="toggle-sidebar" class="btn btn-secondary rounded-0"
+							href="#" style="margin: 20px; background: #3ab54a;"> <span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+									fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+										d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+						</span>
+
+						</a>
+
+
+					</div>
+
+					<div class="container mt-5 ">
+
+						<div class="card-container-holder">
+							<div class="card-5">
+								<div class="card-header"
+									style="background: #2b9139; color: aliceblue">
+									<h2 class="text-center">Item Buy</h2>
+								</div>
+
+								<div class="form-body ">
+									<form th:action="@{Item_buy/'+${ShopId}+'/'+${HeadId}+'/'+${Shop_BrId}}" method="post" id= 'myForm'
+										th:object="${item_buy}">
+
+										<div
+											class="col-md-12 -shadow shadow-lg p-3 mb-5 bg-white rounded">
+											<div class="line line-dashed line-lg pull-in"></div>
+											
+											<div class="row">
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-12">
+															<label for="text" class="text-center m-2">Transaction ID:</label>
+														</div>
+														<div class="col-lg-8 col-md-8 col-sm-12">
+															<input type="text" class="form-control"
+																name="TransCode" id="TransCode"
+																th:value="${TransCode}" readonly> <!-- th:value="*{}" -->
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 col-md-6 col-sm-12">
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-12">
+															<label for="text" class="text-center m-2">Transaction Date:</label>
+														</div>
+														<div class="col-lg-8 col-md-8 col-sm-12">
+															<input type="text" class="form-control"
+																name="TransDate" id="TransDate"
+																th:value="${TransDate}" readonly> <!-- th:value="${TransDate}" -->
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="row pt-2 pb-2">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12">
+															<label for="text" class="text-center m-2">POS Number:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control"
+																name="POS_ID" id="POS_ID"
+																th:value="${POS_ID}" readonly> 
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12">
+															<label for="text" class="text-center m-2">User Name:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<input type="text" class="form-control"
+																name="user_name" id="user_name"
+																th:value="${user_name}" readonly> 
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="row">
+														<div class="col-lg-5 col-md-5 col-sm-12">
+															<label for="text" class="text-center m-2">Shop Vendor:</label>
+														</div>
+														<div class="col-lg-7 col-md-7 col-sm-12">
+															<select id="VEND_ID" class="form-control" name="VEND_ID">
+			                                                   <option value="">Select Shop Vendor</option>
+			                                                   <option th:each="b : ${listShop_vendor}"
+			                                                      th:value="${b.VEND_ID}"
+			                                                      th:text="${b.VEND_NAME}"
+			                                                      ></option>  <!-- th:selected="${b.ZONE_CODE}==${ic_CIRCLE_MST.ZONE_CODE}" -->
+			                                                </select>
+														</div>
+													</div>
+												</div>
+											</div>
+												
+											<div class="row">
+												<table class="table table-bordered" id="orders">
+													<tr>
+														<th>Item</th>
+														<th>Quantity</th>
+														<th>Unit</th>
+														<th>Retail Price</th>
+														<th>Buy Price</th>
+														<th>Total Price (Taka)</th>
+														<th></th>
+													</tr>
+													<tr>
+														<td>
+															<input class="form-control" list="listItem" id="ITEM_ID_1" name="ITEM_ID_1" placeholder="type here..." />
+															<datalist id="listItem">
+																<option th:each="a : ${listItem}"
+																			th:text="${a.ITEM_NAME}" th:value="${a.ITEM_CODE}" ></option>
+															</datalist>
+															<!-- <select id="ITEM_ID_1"
+																class="form-control" name="ITEM_ID_1">
+																	<option value="">-----Select item-----</option>
+																	<option th:each="a : ${listItem}"
+																		th:value="${a.ITEM_CODE}" th:text="${a.ITEM_NAME}"></option>
+															</select> -->
+														</td>
+
+														<td><input class="form-control quantity"
+															type='number' id='quantity_1' name='quantity_1' for="1"
+															required /></td>
+														<td>
+															
+															<!-- <select type="text" name="UNIT_ID_1" id="UNIT_ID_1"
+																class="form-control">
+																<option value="">Select Unit</option>
+																<option th:each="a : ${listItem1}"
+																	th:value="${a.UNIT_ID}" th:text="${a.UNIT_NAME}"
+																	></option> th:selected=${a.SUB_HEAD_ID}==${shop_item.HEAD_ID}
+															</select> -->
+															<input class="form-control" list="listItem1" id="UNIT_ID_1" name="UNIT_ID_1"  />
+															<datalist id="listItem1">
+																<option th:each="a : ${listItem1}"
+																			th:text="${a.UNIT_ID}" th:value="${a.UNIT_NAME}" ></option>
+															</datalist>
+															
+														</td>
+														<td><input class="form-control retail_price"
+															type='number' data-type="retail_price"
+															id='retail_price_1' name='retail_price_1' for="1"
+															required /></td>
+														<td><input class="form-control buy_price"
+															type='number' data-type="buy_price" id='buy_price_1'
+															name='buy_price_1' for="1" required /></td>
+														<td><input class="form-control total_cost"
+															type='text' id='total_cost_1' name='total_cost_1' for='1'
+															readonly /></td>
+														<td><button type="button" name="add" id="add"
+																class="btn btn-success circle">+</button></td>
+													</tr>
+												</table>
+												<!-- <input class="form-control" type='hidden' data-type="product_id_1" id='product_id_1' name='product_id[]'/>  -->
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-4 col-md-4 col-sm-12"></div>
+											<div class="col-lg-4 col-md-4 col-sm-12"></div>
+											<div class="col-lg-4 col-md-4 col-sm-12">
+												<button type="button" class="btn btn-success m-3" id="butt"
+													data-toggle="modal" data-target="#myModal"
+													th:if="${flag} == '0' ">Save</button>
+											</div>
+										</div>
+
+										<div class="row form-inline" style="margin-left: 450px;">
+
+
+
+											<!-- Modal HTML -->
+											<div id="myModal" class="modal fade ">
+												<div class="modal-dialog modal-confirm">
+													<div class="modal-content">
+														<div class="modal-header flex-column">
+															<h4 class="modal-title w-100">Are you sure?</h4>
+															<a type="button" class="btn-close" data-dismiss="modal"
+																aria-hidden="true">&times;</a>
+														</div>
+														<div class="modal-body">
+															<p>Do you really want to save these records?</p>
+														</div>
+														<div class="modal-footer justify-content-center"
+															style="border: none;">
+															<a type="button" class="btn btn-secondary"
+																data-dismiss="modal">Cancel</a>
+															<!--                     <button type="button" class="btn btn-danger">Delete</button> -->
+															<input class="btn btn-danger" name="submit" id="submit"
+																type="submit" value="Yes">
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Modal HTML -->
+
+
+										</div>
+
+
+									</form>
+									<div class='results'></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+		
+	</main>
+	<!-- page-content" -->
+
+	</div>
+	</div>
+
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+
+		var listItem = /*[[${listItem}]]*/'default';
+
+		/*]]>*/
+		var test='';
+		test+='<datalist id="listItem">';
+		for (let i = 0; i < listItem.length; i++) {
+			test += '<option  value="'+listItem[i].item_CODE+'"> '
+					+ listItem[i].item_NAME + ' </option>';
+		}
+		test+='</datalist>';
+		
+		var listItem1 = /*[[${listItem1}]]*/'default';
+
+		/*]]>*/
+		var test1='';
+		test1+='<datalist id="listItem1">';
+		for (let i = 0; i < listItem1.length; i++) {
+			test1 += '<option  value="'+listItem1[i].unit_ID+'"> '
+					+ listItem1[i].unit_NAME + ' </option>';
+		}
+		test1+='</datalist>';
+		let rowCount = 1;
+
+		$('#add')
+				.click(
+						function() {
+							rowCount++;
+							$('#orders')
+									.append(
+											'<tr id="row'+rowCount+'"> <td> <input class="form-control" list="listItem" id="ITEM_ID_'+rowCount+'" name="ITEM_ID_'+rowCount+'" placeholder="type here..." /> '
+													+ test
+													+ ' </td><td><input class="form-control quantity" type="number" class="quantity" id="quantity_'+rowCount+'" name="quantity_'+rowCount+'" for="'+rowCount+'" required/> </td>'
+													+' <td> <input class="form-control" list="listItem1" id="UNIT_ID_'+rowCount+'" name="UNIT_ID_'+rowCount+'" placeholder="type here..." /> '
+													+ test1
+													+'<td><input class="form-control retail_price" type="number" data-type="retail_price" id="retail_price_'+rowCount+'" name="retail_price_'+rowCount+'" for="'+rowCount+'" required/></td><td><input class="form-control buy_price" type="number" data-type="buy_price" id="buy_price_'+rowCount+'" name="buy_price_'+rowCount+'" for="'+rowCount+'" required/></td><td><input class="form-control total_cost" type="text" id="total_cost_'+rowCount+'" name="total_cost_'+rowCount+'"  for="'+rowCount+'" readonly/> </td><td><button type="button" name="remove" id="'+rowCount+'" class="btn btn-danger btn_remove cicle">-</button></td></tr>');				
+							
+						});
+		
+		
+		
+		// Add a generic event listener for any change on quantity or price classed inputs
+		$("#orders").on('input',
+				'input.quantity,input.retail_price,input.buy_price',
+				function() {
+					getTotalCost($(this).attr("for"));
+				});
+
+		$(document).on('click', '.btn_remove', function() {
+			rowCount--;
+			var button_id = $(this).attr('id');
+			$('#row' + button_id + '').remove();
+		});
+
+		// Using a new index rather than your global variable i
+		function getTotalCost(ind) {
+			var qty = $('#quantity_' + ind).val();
+			var price = $('#buy_price_' + ind).val();
+			var totNumber = (qty * price);
+			var tot = totNumber.toFixed(2);
+			$('#total_cost_' + ind).val(tot);
+			$('#count').val(ind);
+		}
+
+		const form = document.querySelector('#myForm');
+		
+		let form_data = [];
+		
+		//console.log(rowCount);
+		//console.log(form);
+		
+		
+		
+		document.getElementById("butt").addEventListener("click", myFunction);
+		//console.log("row count",rowCount);	
+		function myFunction()
+		{
+			console.log("row count",rowCount);
+			var Item = "[";
+			for(let i=1; i<=rowCount; i++)
+			{
+				
+				Item+="{";
+				Item+='"ITEM_NAME":"'+document.getElementById("ITEM_ID_"+i).value+'",';
+				Item+='"QUANTITY":"'+document.getElementById("quantity_"+i).value+'",';
+				Item+='"RETAIL_PRICE":"'+document.getElementById("retail_price_"+i).value+'",';
+				Item+='"BUY_PRICE":"'+document.getElementById("buy_price_"+i).value+'",';
+				Item+='"TOTAL_COST":"'+document.getElementById("total_cost_"+i).value+'"';
+				if(i==rowCount){
+					Item+="}";
+				}else{
+					Item+="},";
+				}
+				
+			}
+			Item+="]";
+			
+		    $.ajax({
+		        url: '/api/Item_buy',
+		        type: 'POST',
+		        contentType: 'application/json',
+		        data: Item,
+		        
+		        success: function(status){
+		        	console.log(status);
+		        },
+		        error: function(){
+		            alert('error');
+		        }
+		    }); 
+		}
+		
+		
+	</script>
+	
+	
+
+	<!-- using online scripts -->
+	<!-- <script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	  -->
+
+	<!-- using local scripts -->
+	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+
+	<script src="../js/main.js"></script>
+	
+	
+
+
+	
+</body>
+</html>

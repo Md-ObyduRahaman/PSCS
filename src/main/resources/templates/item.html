@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>javaScript</title>
+    <style>
+        #lavel_1 {
+            margin-left: 20px;
+            background-color: antiquewhite;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div  style="width: 70%;">
+
+    <h1 style="margin-left: 30px;">Levels</h1>
+
+
+    <div id="lavel_1" class="row">
+
+        <div class="col-2">
+            <button id="cl_1">level - 1</button>
+        </div>
+
+        <div class="col" id="i_1">
+
+        </div>
+
+
+        <div class="col">
+
+        </div>
+
+    </div>
+
+
+
+    <div id="lavel_1" class="row">
+        <div class="col-2">
+            <button id="cl_2">level - 2</button>
+        </div>
+     
+        <div class="col" id="i_2">
+
+        </div>
+
+    </div>
+
+
+
+    <div id="lavel_1" class="row">
+        <div class="col-2">
+            <button id="cl_3">level - 3</button>
+        </div>
+     
+        <div class="col" id="i_3">
+
+        </div>
+
+    </div>
+
+    <div id="lavel_1" class="row">
+        <div class="col-2">
+            <button id="cl_4">level - 4</button>
+        </div>
+        <div class="col" id="i_4">
+
+        </div>
+     
+
+    </div>
+</div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="java.js"></script>
+    <script>
+
+        let v=0;
+
+        
+        if(v==0){
+                v++;
+                console.log(v);
+                $(document).ready(function () {
+                $("#cl_1").on('click', function() {
+                    $("#i_1").append('<select><option value="Home">Parent</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                    $("#i_1").append(' <input type="text">');
+                    
+                });
+                
+            });
+            console.log(v);
+        }
+
+        $(document).ready(function () {
+            $("#cl_2").click(function () {
+                $("#i_2").append('<select><option value="Home">Parent</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_2").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_2").append('<input type="text">');
+            });
+        });
+
+        $(document).ready(function () {
+            $("#cl_3").click(function () {
+                $("#i_3").append('<select><option value="Home">Parent</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_3").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_3").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_3").append('<input type="text">');
+            });
+        });
+
+        $(document).ready(function () {
+            $("#cl_4").click(function () {
+                $("#i_4").append('<select><option value="Home">Parent</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_4").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_4").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_4").append('<select><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option><option value="Home">Home</option></select>');
+                $("#i_4").append(' <input type="text">');
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

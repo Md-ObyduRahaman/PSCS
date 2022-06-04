@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSCS</title>
+    <!-- using online links -->
+    <link rel="stylesheet" href="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- CSS For Bootstrap  -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- CSS for DataTable -->
+    <link rel="stylesheet" href="../datatable/bootstrap.min.css">
+    <link rel="stylesheet" href="../datatable/bootstrap5.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/sidebar-themes.css">
+    <link rel="stylesheet" href="../css/form-style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  $("#toggle-sidebar").click(function(){
+	    $(".togg").toggle("slow");
+	  });
+	});
+	</script>
+    <style>
+    	
+    	ul li a
+    	{
+    		color: white !important;
+    	}
+    	
+      .logo {
+        width: 160px;
+        height: 85px;
+      }
+
+      /* Extra small devices (phones, 600px and down) */
+      @media only screen and (max-width: 600px) {
+        .logo {
+          width: 30px;
+          height: 20px;
+        }
+      }
+
+      /* Small devices (portrait tablets and large phones, 600px and up) */
+      @media only screen and (min-width: 600px) {
+        .logo {
+          width: 115px;
+          height: 70px;
+        }
+      }
+
+      /* Medium devices (landscape tablets, 768px and up) */
+      @media only screen and (min-width: 768px) {
+        .logo {
+          width: 130px;
+          height: 75px;
+        }
+      }
+
+      /* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+        .logo {
+          width: 145px;
+          height: 80px;
+        }
+      }
+
+      /* Extra large devices (large laptops and desktops, 1200px and up) */
+      @media only screen and (min-width: 1200px) {
+        .logo {
+          width: 160px;
+          height: 85px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row flex-nowrap">
+       
+            <div class="col-auto col-md-2 col-xl-2 px-sm-2 px-0 bg-dark togg" >
+     <div th:replace="fragment/sideBar :: sideBar"></div>
+        </div>
+        
+          <!-- page-content  -->
+          <main class="page-content">
+            <div id="overlay" class="overlay"></div>
+            <div class="container-fluid" style="padding: 0px;">
+              <div class="title-bar" style="height: 90px; background-color: #CDB699 !important;width: 100%!important;background-repeat: no-repeat;background-size: initial;">
+                <a id="toggle-sidebar" class="btn btn-secondary rounded-0" href="#" style="margin: 20px; background: #3ab54a;">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                  </span>
+                  
+                </a>
+                
+               
+              </div>
+              
+         <div class="container">
+         
+        
+					
+					<form th:action="@{/Account_Statement}" method="post"
+						th:object="${accountStat}">
+						
+						<div class="card mt-5 mb-5">
+							<div class="row pt-4 pb-4 card-body">
+								<div class="col-lg-2 col-md-2 col-sm-12 mt-3 text-center" >
+									<label for="bill" class="">Date :</label>
+								</div>
+								
+								<div class="col-lg-3 col-md-3 col-sm-12">
+								  <input type="date" class="form-control" name="SHOP_GL_ID" id="SHOP_GL_ID"
+                                  th:value="*{SHOP_GL_ID}">
+								</div>
+								
+								<div class="col-lg-2 col-md-2 col-sm-12 text-center">
+									<input type="submit" value="Submit"
+										class="btn btn-lg btn-success mr-1 mb-1" />
+								</div>
+						<!--		<div class="col-lg-2 col-md-2 col-sm-12 text-center">
+								<input type="button"
+						class="btn btn-lg btn-danger mr-1 mb-1"
+						id="printme" value="Print" onclick="printContent('divName')" />
+								</div>-->
+							</div>
+						</div>
+						
+						 
+					</form>
+
+				</div>
+
+
+                <div id="divName" class="container" >
+                <div class="col-md-12">
+                <h1 style="text-align: center;  font-weight: bold; margin-bottom: 40px;">Account Statement</h1>
+                
+                 
+
+                <table class="table mt-4" style="text-align: center;">
+                
+                <h5 style="text-align: center;   margin-bottom: 40px;">Date :<span th:text="*{date}"></span></h5>
+     
+                  <tr style="background-color:#ECD8FD">
+                    <th style="text-align: center;">GL Name</th>
+                    <th style="text-align: center;">Amount</th>
+                                 
+                  </tr>
+        
+                 <tr style="height: 50px;" th:each="t: ${itemModel2}" th:style="${t.GL_NAME=='Total'} ? 'background-color: #11c7e0;font-weight: bold;' : (${t.GL_NAME =='Sub Total' } ? 'background-color: #7BCC0B;font-weight: bold;' : (${t.GL_NAME =='Grand Total' } ? 'background-color: #FF9900;font-weight: bold;' : 'background-color: #fff' ) ) ">
+                 
+                    <td th:text="${t.GL_NAME}"></td>
+                    <td th:text="${t.AMT}"></td>
+           
+                  </tr>
+                  
+             
+           
+                </table>
+                
+                
+  
+            </div>
+              
+                </div>
+    </div>
+              
+              
+              
+              
+            </div>
+          </main>
+          <!-- page-content" -->
+      
+      </div>
+    </div>
+    
+	<!-- using online scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+		</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+		</script>
+	<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+	<!-- using local scripts -->
+	<!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script> -->
+
+
+	<script src="../js/main.js"></script>
+	<!-- datatable script  -->
+	<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- Call JS For DataTable -->
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+  </body>
+</html>
